@@ -138,28 +138,20 @@ export function InsightsSection() {
 
   useEffect(() => {
     if (selectedPost) {
-      // 1. Зберігаємо поточну позицію скролу, щоб сторінка не стрибала вгору
-      const scrollY = window.scrollY;
-      
-      // 2. Фіксуємо body, щоб він не міг скролитися взагалі
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      document.body.style.overflowY = 'scroll'; // Залишаємо місце під скролбар, щоб верстка не сіпалась
+      // 1. Блокуємо скрол на рівні body через overflow
+      const originalStyle = window.getComputedStyle(document.body).overflow
+      document.body.style.overflow = "hidden"
+      // Для iOS додаємо блокування на рівні touch
+      document.body.style.touchAction = "none"
 
-      // 3. Повертаємо скрол модалки вгору
+      // 2. Скидаємо скрол дрейвера
       if (drawerRef.current) {
-        drawerRef.current.scrollTop = 0;
+        drawerRef.current.scrollTop = 0
       }
 
       return () => {
-        // 4. При закритті повертаємо все як було
-        const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflowY = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        document.body.style.overflow = originalStyle
+        document.body.style.touchAction = ""
       }
     }
   }, [selectedPost])
@@ -219,7 +211,7 @@ export function InsightsSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/70 z-[60]"
+              className="fixed inset-0 bg-black/70 z-50 pointer-events-auto"
               onClick={() => setSelectedPost(null)}
             />
 
@@ -229,15 +221,17 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-screen bg-[#1C1C1C] z-[70] overflow-y-auto"
+              // Важливо: overflow-y-scroll примусово вмикає скролбар
+              // touch-action: pan-y дозволяє скрол пальцем по вертикалі
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-[100] overflow-y-scroll touch-pan-y pointer-events-auto"
               style={{ 
-                WebkitOverflowScrolling: "touch",
-                overscrollBehaviorY: "contain"
+                overscrollBehaviorY: "contain",
+                WebkitOverflowScrolling: "touch" 
               }}
             >
               <button
                 onClick={() => setSelectedPost(null)}
-                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-[80]"
+                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-[110]"
               >
                 <X size={24} />
               </button>
