@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useIsMobile } from '@/hooks/use-mobile'
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { X } from "lucide-react"
@@ -135,6 +136,7 @@ const posts = [
 export function InsightsSection() {
   const [selectedPost, setSelectedPost] = useState<(typeof posts)[0] | null>(null)
   const drawerRef = useRef<HTMLDivElement | null>(null)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     function isEventInsideDrawer(e: Event) {
@@ -145,6 +147,7 @@ export function InsightsSection() {
 
     function wheelHandler(e: WheelEvent) {
       if (!selectedPost) return
+      if (isMobile) return // no need, drawer doesn't scroll
       if (!isEventInsideDrawer(e)) {
         e.preventDefault()
         e.stopPropagation()
@@ -153,6 +156,7 @@ export function InsightsSection() {
 
     function touchHandler(e: TouchEvent) {
       if (!selectedPost) return
+      if (isMobile) return // already blocked via touchAction
       if (!isEventInsideDrawer(e)) {
         e.preventDefault()
         e.stopPropagation()
@@ -268,7 +272,8 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto overscroll-y-contain"
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 
+                ${isMobile ? 'overflow-y-hidden' : 'overflow-y-auto'} overscroll-y-contain"
               ref={drawerRef}
               tabIndex={-1}
               style={{ WebkitOverflowScrolling: "touch" }}
