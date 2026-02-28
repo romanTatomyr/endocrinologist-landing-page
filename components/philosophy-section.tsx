@@ -41,7 +41,7 @@ export function PhilosophySection() {
             viewport={{ once: true }}
             className="md:col-span-2 relative overflow-hidden min-h-[250px]"
           >
-            <Image src="/abstract-medical-soft-teal-waves-zen-minimalist.jpg" alt="Абстрактна медична ілюстрація" fill className="object-cover" />
+            <Image src="/endocrinologist-landing-page/abstract-medical-soft-teal-waves-zen-minimalist.jpg" alt="Абстрактна медична ілюстрація" fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C]/60 to-transparent" />
           </motion.div>
 
