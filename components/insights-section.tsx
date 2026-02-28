@@ -177,6 +177,8 @@ export function InsightsSection() {
       const scrollBarWidth = window.innerWidth - docEl.clientWidth
       if (scrollBarWidth > 0) body.style.paddingRight = `${scrollBarWidth}px`
       body.style.overflow = "hidden"
+      // prevent mobile touch scrolling / overscroll chaining
+      body.style.touchAction = "none"
       window.dispatchEvent(new CustomEvent("modal:open"))
       // focus drawer when opened
       setTimeout(() => drawerRef.current?.focus(), 0)
@@ -188,6 +190,7 @@ export function InsightsSection() {
     return () => {
       body.style.overflow = originalOverflow
       body.style.paddingRight = originalPaddingRight
+      body.style.touchAction = "auto"
       if (selectedPost) window.dispatchEvent(new CustomEvent("modal:close"))
       document.removeEventListener("wheel", wheelHandler, { capture: true } as any)
       document.removeEventListener("touchmove", touchHandler, { capture: true } as any)
@@ -265,7 +268,7 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto overscroll-y-contain"
               ref={drawerRef}
               tabIndex={-1}
               style={{ WebkitOverflowScrolling: "touch" }}
