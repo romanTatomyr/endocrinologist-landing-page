@@ -137,24 +137,22 @@ export function InsightsSection() {
   const drawerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const body = document.body
-    const originalOverflow = body.style.overflow
-
     if (selectedPost) {
-      body.style.overflow = "hidden"
+      // Блокуємо скрол фону на рівні html та body
+      const originalHtmlStyle = window.getComputedStyle(document.documentElement).overflow
+      const originalBodyStyle = window.getComputedStyle(document.body).overflow
       
-      // Ручне керування коліщатком миші для десктопу
-      const handleWheel = (e: WheelEvent) => {
-        if (drawerRef.current) {
-          drawerRef.current.scrollTop += e.deltaY
-        }
+      document.documentElement.style.overflow = "hidden"
+      document.body.style.overflow = "hidden"
+
+      // Повертаємо скрол дрейвера вгору
+      if (drawerRef.current) {
+        drawerRef.current.scrollTop = 0
       }
 
-      window.addEventListener('wheel', handleWheel, { passive: true })
-      
       return () => {
-        window.removeEventListener('wheel', handleWheel)
-        body.style.overflow = originalOverflow
+        document.documentElement.style.overflow = originalHtmlStyle
+        document.body.style.overflow = originalBodyStyle
       }
     }
   }, [selectedPost])
@@ -224,15 +222,16 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate"
+              // scroll-smooth поверне приємну анімацію прокрутки
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-[60] overflow-y-auto isolate scroll-smooth"
               style={{ 
-                WebkitOverflowScrolling: "touch", // Для iOS
-                overscrollBehaviorY: "contain"    // Запобігає скролу фону
+                WebkitOverflowScrolling: "touch",
+                overscrollBehaviorY: "contain" 
               }}
             >
               <button
                 onClick={() => setSelectedPost(null)}
-                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-20"
+                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-[70]"
               >
                 <X size={24} />
               </button>
@@ -271,3 +270,4 @@ export function InsightsSection() {
     </section>
   )
 }
+
