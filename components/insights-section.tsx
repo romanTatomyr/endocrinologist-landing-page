@@ -15,7 +15,7 @@ const posts = [
 
 Коли гормони збалансовані, ви відчуваєте енергію, ваша шкіра сяє, вага стабільна, а настрій рівний. Однак дисбаланс може призвести до втоми, збільшення ваги, проблем зі шкірою та емоційних коливань.
 
-Основные фактори, що впливають на гормональний баланс:
+Основні фактори, що впливають на гормональний баланс:
 • Якість сну та режим дня
 • Харчування та рівень стресу  
 • Фізична активність
@@ -143,19 +143,19 @@ export function InsightsSection() {
     if (selectedPost) {
       body.style.overflow = "hidden"
       
-      // Таймаут для фокусування, щоб браузер переключив скрол миші на модалку
-      const timeoutId = setTimeout(() => {
+      // Ручне керування коліщатком миші для десктопу
+      const handleWheel = (e: WheelEvent) => {
         if (drawerRef.current) {
-          drawerRef.current.focus()
-          drawerRef.current.scrollTop = 0
+          drawerRef.current.scrollTop += e.deltaY
         }
-      }, 50)
-      
-      return () => clearTimeout(timeoutId)
-    }
+      }
 
-    return () => {
-      body.style.overflow = originalOverflow
+      window.addEventListener('wheel', handleWheel, { passive: true })
+      
+      return () => {
+        window.removeEventListener('wheel', handleWheel)
+        body.style.overflow = originalOverflow
+      }
     }
   }, [selectedPost])
 
@@ -220,15 +220,14 @@ export function InsightsSection() {
 
             <motion.div
               ref={drawerRef}
-              tabIndex={0}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate outline-none"
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate"
               style={{ 
-                WebkitOverflowScrolling: "touch",
-                overscrollBehaviorY: "contain" 
+                WebkitOverflowScrolling: "touch", // Для iOS
+                overscrollBehaviorY: "contain"    // Запобігає скролу фону
               }}
             >
               <button
