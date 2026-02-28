@@ -24,7 +24,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <div className="absolute inset-0 bg-[#1C1C1C]/60 z-10" />
         <motion.img
-          src="/endocrinologist-landing-page/doctor-hero.jpeg"
+          src="/endocrinologist-landing-page/doctor-hero.webp"
           alt="Л-р. Юлія Татомир"
           className="w-full h-full object-cover object-top"
           initial={{ scale: 1.2, opacity: 0 }}
