@@ -143,9 +143,12 @@ export function InsightsSection() {
 
     if (selectedPost) {
       body.style.overflow = "hidden"
-      body.style.touchAction = "none" // Запобігає скролу фону на тач-пристроях
       
-      // Скидаємо скрол дрейвера вгору при відкритті
+      // Блокуємо тач-жести на фоні ТІЛЬКИ для мобільних пристроїв, щоб не ламати мишку на десктопі
+      if (window.matchMedia("(pointer: coarse)").matches) {
+        body.style.touchAction = "none"
+      }
+      
       if (drawerRef.current) {
         drawerRef.current.scrollTop = 0
       }
