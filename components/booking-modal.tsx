@@ -92,7 +92,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-              className="w-full max-w-lg max-h-[calc(100vh-2rem)] bg-[#1C1C1C] border border-[#333333] rounded-lg overflow-auto shadow-lg"
+              className="relative w-full max-w-lg max-h-[calc(100vh-2rem)] bg-[#1C1C1C] border border-[#333333] rounded-lg overflow-auto shadow-lg"
               ref={modalRef}
               tabIndex={-1}
               style={{ WebkitOverflowScrolling: "touch" }}
