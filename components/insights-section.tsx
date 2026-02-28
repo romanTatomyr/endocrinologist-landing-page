@@ -270,11 +270,11 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                             className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto"
+                             className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto touch-pan-y"
 
                ref={drawerRef}
               tabIndex={-1}
-              style={{ WebkitOverflowScrolling: "touch" }}
+              style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
               onWheel={(e: any) => {
                 const el = drawerRef.current
                 if (!el) return
