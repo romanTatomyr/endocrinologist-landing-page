@@ -149,15 +149,23 @@ export function InsightsSection() {
         drawerRef.current.scrollTop = 0
       }
 
-      // 3. Блокуємо mouse wheel на фоні (поза дрейвером)
+      // 3. Дозволяємо wheel скрол тільки всередину дрейвера
       function handleWheel(e: WheelEvent) {
-        const target = e.target as HTMLElement
-        if (!drawerRef.current?.contains(target)) {
+        const drawer = drawerRef.current
+        if (!drawer) return
+
+        const rect = drawer.getBoundingClientRect()
+        const mouseX = e.clientX
+        const mouseY = e.clientY
+
+        // Якщо мишка не в межах дрейвера - блокуємо wheel
+        if (mouseX < rect.left || mouseX > rect.right || mouseY < rect.top || mouseY > rect.bottom) {
           e.preventDefault()
+          e.stopPropagation()
         }
       }
 
-      document.addEventListener("wheel", handleWheel, { passive: false })
+      document.addEventListener("wheel", handleWheel, { passive: false, capture: true })
 
       return () => {
         document.body.style.overflow = originalStyle
