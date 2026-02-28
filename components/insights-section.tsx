@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { X } from "lucide-react"
@@ -136,33 +135,25 @@ const posts = [
 export function InsightsSection() {
   const [selectedPost, setSelectedPost] = useState<(typeof posts)[0] | null>(null)
   const drawerRef = useRef<HTMLDivElement | null>(null)
- 
 
   useEffect(() => {
-    // NOTE: manual wheel/touch/keyboard blocking was removed because
-    // body overflow:hidden already prevents background scroll and the
-    // drawer itself is scrollable. These handlers were blocking
-    // legitimate touch gestures on mobile.
-
     const body = document.body
-    const docEl = document.documentElement
     const originalOverflow = body.style.overflow
-    const originalPaddingRight = body.style.paddingRight
+    const originalTouchAction = body.style.touchAction
 
     if (selectedPost) {
-      const scrollBarWidth = window.innerWidth - docEl.clientWidth
-      if (scrollBarWidth > 0) body.style.paddingRight = `${scrollBarWidth}px`
       body.style.overflow = "hidden"
-      window.dispatchEvent(new CustomEvent("modal:open"))
-      // focus drawer when opened
-      setTimeout(() => drawerRef.current?.focus(), 0)
+      body.style.touchAction = "none" // Запобігає скролу фону на тач-пристроях
+      
+      // Скидаємо скрол дрейвера вгору при відкритті
+      if (drawerRef.current) {
+        drawerRef.current.scrollTop = 0
+      }
     }
 
     return () => {
       body.style.overflow = originalOverflow
-      body.style.paddingRight = originalPaddingRight
-
-      if (selectedPost) window.dispatchEvent(new CustomEvent("modal:close"))
+      body.style.touchAction = originalTouchAction
     }
   }, [selectedPost])
 
@@ -190,7 +181,6 @@ export function InsightsSection() {
               onClick={() => setSelectedPost(post)}
               className="group cursor-pointer bg-[#252525] overflow-hidden"
             >
-              {/* Thumbnail */}
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src={post.image || "/placeholder.svg"}
@@ -201,13 +191,10 @@ export function InsightsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#252525] to-transparent opacity-60" />
               </div>
 
-              {/* Content */}
               <div className="p-6">
-                {/* Category tag */}
                 <span className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-4">
                   {post.category}
                 </span>
-
                 <h3 className="text-xl md:text-2xl font-light text-[#EAEAEA] leading-tight group-hover:text-[#EAEAEA]/80 transition-colors duration-300">
                   {post.title}
                 </h3>
@@ -220,7 +207,6 @@ export function InsightsSection() {
       <AnimatePresence>
         {selectedPost && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -230,27 +216,25 @@ export function InsightsSection() {
               onClick={() => setSelectedPost(null)}
             />
 
-            {/* Side Drawer */}
             <motion.div
+              ref={drawerRef}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                             className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-full bg-[#1C1C1C] z-50 overflow-y-auto touch-pan-y"
-
-               ref={drawerRef}
-              tabIndex={-1}
-              style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate"
+              style={{ 
+                WebkitOverflowScrolling: "touch", 
+                overscrollBehaviorY: "contain" 
+              }}
             >
-              {/* Close button */}
               <button
                 onClick={() => setSelectedPost(null)}
-                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-10"
+                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-20"
               >
                 <X size={24} />
               </button>
 
-              {/* Article header image */}
               <div className="relative h-72 md:h-96">
                 <Image
                   src={selectedPost.image || "/placeholder.svg"}
@@ -261,8 +245,7 @@ export function InsightsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] via-[#1C1C1C]/50 to-transparent" />
               </div>
 
-              {/* Article content */}
-              <div className="p-8 md:p-12 -mt-24 relative">
+              <div className="p-8 md:p-12 -mt-24 relative z-10">
                 <span className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-6">
                   {selectedPost.category}
                 </span>
