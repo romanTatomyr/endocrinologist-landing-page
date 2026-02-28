@@ -154,25 +154,28 @@ export function InsightsSection() {
       }
     }
 
-    function touchHandler(e: TouchEvent) {
-      if (!selectedPost) return
+    let touchStartedInside = false
 
+    function touchStartHandler(e: TouchEvent) {
+      if (!selectedPost) return
       const touch = e.touches[0]
       if (!touch) return
-
       const el = drawerRef.current
       if (el) {
         const rect = el.getBoundingClientRect()
-        if (
+        touchStartedInside =
           touch.clientX >= rect.left &&
           touch.clientX <= rect.right &&
           touch.clientY >= rect.top &&
           touch.clientY <= rect.bottom
-        ) {
-          // gesture started inside drawer – allow default behavior
-          return
-        }
+      } else {
+        touchStartedInside = false
       }
+    }
+
+    function touchHandler(e: TouchEvent) {
+      if (!selectedPost) return
+      if (touchStartedInside) return
 
       e.preventDefault()
       e.stopPropagation()
@@ -200,6 +203,7 @@ export function InsightsSection() {
       // focus drawer when opened
       setTimeout(() => drawerRef.current?.focus(), 0)
       document.addEventListener("wheel", wheelHandler, { passive: false, capture: true })
+      document.addEventListener("touchstart", touchStartHandler, { passive: true, capture: true })
       document.addEventListener("touchmove", touchHandler, { passive: false, capture: true })
       document.addEventListener("keydown", keyHandler, { capture: true })
     }
@@ -210,6 +214,7 @@ export function InsightsSection() {
 
       if (selectedPost) window.dispatchEvent(new CustomEvent("modal:close"))
       document.removeEventListener("wheel", wheelHandler, { capture: true } as any)
+      document.removeEventListener("touchstart", touchStartHandler, { capture: true } as any)
       document.removeEventListener("touchmove", touchHandler, { capture: true } as any)
       document.removeEventListener("keydown", keyHandler, { capture: true } as any)
     }
@@ -285,7 +290,7 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                             className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto touch-pan-y"
+                             className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-full bg-[#1C1C1C] z-50 overflow-y-auto touch-pan-y"
 
                ref={drawerRef}
               tabIndex={-1}
