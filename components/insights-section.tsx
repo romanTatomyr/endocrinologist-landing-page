@@ -139,56 +139,10 @@ export function InsightsSection() {
  
 
   useEffect(() => {
-    function isEventInsideDrawer(e: Event) {
-      const el = drawerRef.current
-      const target = e.target as Node | null
-      return !!el && target && el.contains(target)
-    }
-
-    function wheelHandler(e: WheelEvent) {
-      if (!selectedPost) return
-
-      if (!isEventInsideDrawer(e)) {
-        e.preventDefault()
-        e.stopPropagation()
-      }
-    }
-
-    let touchStartedInside = false
-
-    function touchStartHandler(e: TouchEvent) {
-      if (!selectedPost) return
-      const touch = e.touches[0]
-      if (!touch) return
-      const el = drawerRef.current
-      if (el) {
-        const rect = el.getBoundingClientRect()
-        touchStartedInside =
-          touch.clientX >= rect.left &&
-          touch.clientX <= rect.right &&
-          touch.clientY >= rect.top &&
-          touch.clientY <= rect.bottom
-      } else {
-        touchStartedInside = false
-      }
-    }
-
-    function touchHandler(e: TouchEvent) {
-      if (!selectedPost) return
-      if (touchStartedInside) return
-
-      e.preventDefault()
-      e.stopPropagation()
-    }
-
-    function keyHandler(e: KeyboardEvent) {
-      if (!selectedPost) return
-      const keys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", " ", "Home", "End"]
-      if (keys.includes(e.key) && !isEventInsideDrawer(e)) {
-        e.preventDefault()
-        e.stopPropagation()
-      }
-    }
+    // NOTE: manual wheel/touch/keyboard blocking was removed because
+    // body overflow:hidden already prevents background scroll and the
+    // drawer itself is scrollable. These handlers were blocking
+    // legitimate touch gestures on mobile.
 
     const body = document.body
     const docEl = document.documentElement
@@ -199,13 +153,9 @@ export function InsightsSection() {
       const scrollBarWidth = window.innerWidth - docEl.clientWidth
       if (scrollBarWidth > 0) body.style.paddingRight = `${scrollBarWidth}px`
       body.style.overflow = "hidden"
-         window.dispatchEvent(new CustomEvent("modal:open"))
+      window.dispatchEvent(new CustomEvent("modal:open"))
       // focus drawer when opened
       setTimeout(() => drawerRef.current?.focus(), 0)
-      document.addEventListener("wheel", wheelHandler, { passive: false, capture: true })
-      document.addEventListener("touchstart", touchStartHandler, { passive: true, capture: true })
-      document.addEventListener("touchmove", touchHandler, { passive: false, capture: true })
-      document.addEventListener("keydown", keyHandler, { capture: true })
     }
 
     return () => {
@@ -213,10 +163,6 @@ export function InsightsSection() {
       body.style.paddingRight = originalPaddingRight
 
       if (selectedPost) window.dispatchEvent(new CustomEvent("modal:close"))
-      document.removeEventListener("wheel", wheelHandler, { capture: true } as any)
-      document.removeEventListener("touchstart", touchStartHandler, { capture: true } as any)
-      document.removeEventListener("touchmove", touchHandler, { capture: true } as any)
-      document.removeEventListener("keydown", keyHandler, { capture: true } as any)
     }
   }, [selectedPost])
 
@@ -295,24 +241,6 @@ export function InsightsSection() {
                ref={drawerRef}
               tabIndex={-1}
               style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
-              onWheel={(e: any) => {
-                const el = drawerRef.current
-                if (!el) return
-
-                const delta = e.deltaY
-                const prev = el.scrollTop
-                const max = el.scrollHeight - el.clientHeight
-                const next = Math.max(0, Math.min(max, prev + delta))
-
-                if (next !== prev) {
-                  el.scrollTop = next
-                  e.preventDefault()
-                  e.stopPropagation()
-                } else {
-                  e.preventDefault()
-                  e.stopPropagation()
-                }
-              }}
             >
               {/* Close button */}
               <button
