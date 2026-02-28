@@ -15,7 +15,7 @@ const posts = [
 
 Коли гормони збалансовані, ви відчуваєте енергію, ваша шкіра сяє, вага стабільна, а настрій рівний. Однак дисбаланс може призвести до втоми, збільшення ваги, проблем зі шкірою та емоційних коливань.
 
-Основні фактори, що впливають на гормональний баланс:
+Основные фактори, що впливають на гормональний баланс:
 • Якість сну та режим дня
 • Харчування та рівень стресу  
 • Фізична активність
@@ -43,7 +43,7 @@ const posts = [
   },
   {
     id: 3,
-    title: "Метаболічне здоров'я в сучасноиму житті",
+    title: "Метаболічне здоров'я в сучасному житті",
     category: "Метаболізм",
     image: "/endocrinologist-landing-page/journal-metabolic-health-lifestyle-medical-photograph.jpg",
     content: `Сучасний ритм життя часто негативно впливає на наш метаболізм. Сидяча робота, перекуси на ходу, хронічний стрес — усе це створює умови для метаболічних порушень.
@@ -141,17 +141,20 @@ export function InsightsSection() {
     const originalOverflow = body.style.overflow
 
     if (selectedPost) {
-      // Блокуємо скрол фону на всій сторінці
       body.style.overflow = "hidden"
       
-      // Скидаємо скрол дрейвера вгору при кожному відкритті
-      if (drawerRef.current) {
-        drawerRef.current.scrollTop = 0
-      }
+      // Таймаут для фокусування, щоб браузер переключив скрол миші на модалку
+      const timeoutId = setTimeout(() => {
+        if (drawerRef.current) {
+          drawerRef.current.focus()
+          drawerRef.current.scrollTop = 0
+        }
+      }, 50)
+      
+      return () => clearTimeout(timeoutId)
     }
 
     return () => {
-      // Повертаємо стандартний скрол при закритті
       body.style.overflow = originalOverflow
     }
   }, [selectedPost])
@@ -206,7 +209,6 @@ export function InsightsSection() {
       <AnimatePresence>
         {selectedPost && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -216,17 +218,17 @@ export function InsightsSection() {
               onClick={() => setSelectedPost(null)}
             />
 
-            {/* Side Drawer */}
             <motion.div
               ref={drawerRef}
+              tabIndex={0}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate"
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate outline-none"
               style={{ 
-                WebkitOverflowScrolling: "touch", // Плавний скрол для iOS
-                overscrollBehaviorY: "contain"    // Запобігає прокрутці фону
+                WebkitOverflowScrolling: "touch",
+                overscrollBehaviorY: "contain" 
               }}
             >
               <button
