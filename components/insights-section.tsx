@@ -230,7 +230,7 @@ export function InsightsSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/70 z-50 pointer-events-auto"
+              className="fixed inset-0 bg-black/70 z-50 pointer-events-none"
               onClick={() => setSelectedPost(null)}
             />
 
@@ -240,12 +240,13 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              // Важливо: overflow-y-scroll примусово вмикає скролбар
-              // touch-action: pan-y дозволяє скрол пальцем по вертикалі
               className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-[100] overflow-y-scroll touch-pan-y pointer-events-auto"
               style={{ 
                 overscrollBehaviorY: "contain",
                 WebkitOverflowScrolling: "touch" 
+              }}
+              onWheel={(e: any) => {
+                e.stopPropagation()
               }}
             >
               <button
