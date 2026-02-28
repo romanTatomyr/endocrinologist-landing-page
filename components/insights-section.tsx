@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { useIsMobile } from '@/hooks/use-mobile'
+
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { X } from "lucide-react"
@@ -11,7 +11,7 @@ const posts = [
     id: 1,
     title: "Розуміння гормонального балансу",
     category: "Гормони",
-    image: "/journal-hormonal-balance-abstract-medical-art-soft-bl.jpg",
+    image: "/endocrinologist-landing-page/journal-hormonal-balance-abstract-medical-art-soft-bl.jpg",
     content: `Гормональний баланс — це ключ до загального здоров'я та благополуччя. Наша ендокринна система — це складна мережа залоз, які виробляють гормони, що регулюють практично всі процеси в організмі.
 
 Коли гормони збалансовані, ви відчуваєте енергію, ваша шкіра сяє, вага стабільна, а настрій рівний. Однак дисбаланс може призвести до втоми, збільшення ваги, проблем зі шкірою та емоційних коливань.
@@ -28,7 +28,7 @@ const posts = [
     id: 2,
     title: "Міфи про щитоподібну залозу",
     category: "Щитоподібна залоза",
-    image: "/journal-thyroid-health-medical-illustration-butterfly.jpg",
+    image: "/endocrinologist-landing-page/journal-thyroid-health-medical-illustration-butterfly.jpg",
     content: `Щитоподібна залоза — маленький орган з величезним впливом на організм. На жаль, навколо неї існує багато міфів, які можуть заважати правильній діагностиці та лікуванню.
 
 Міф 1: "Якщо ТТГ в нормі — проблем немає"
@@ -46,7 +46,7 @@ const posts = [
     id: 3,
     title: "Метаболічне здоров'я в сучасному житті",
     category: "Метаболізм",
-    image: "/journal-metabolic-health-lifestyle-medical-photograph.jpg",
+    image: "/endocrinologist-landing-page/journal-metabolic-health-lifestyle-medical-photograph.jpg",
     content: `Сучасний ритм життя часто негативно впливає на наш метаболізм. Сидяча робота, перекуси на ходу, хронічний стрес — усе це створює умови для метаболічних порушень.
 
 Метаболічний синдром — це комплекс симптомів, що включає:
@@ -68,7 +68,7 @@ const posts = [
     id: 4,
     title: "Наднирникова втома: факт чи міф?",
     category: "Наднирники",
-    image: "/journal-adrenal-health-abstract-medical-art-warm-tone.jpg",
+    image: "/endocrinologist-landing-page/journal-adrenal-health-abstract-medical-art-warm-tone.jpg",
     content: `"Наднирникова втома" — популярний термін в альтернативній медицині, але що каже доказова наука?
 
 Офіційно медицина не визнає "наднирникову втому" як діагноз. Однак це не означає, що ваші симптоми не реальні. Хронічна втома, слабкість, проблеми з концентрацією — усе це потребує уваги.
@@ -87,7 +87,7 @@ const posts = [
     id: 5,
     title: "Профілактика діабету 2 типу",
     category: "Діабет",
-    image: "/journal-diabetes-prevention-healthy-lifestyle-medical.jpg",
+    image: "/endocrinologist-landing-page/journal-diabetes-prevention-healthy-lifestyle-medical.jpg",
     content: `Діабет 2 типу — одне з найпоширеніших хронічних захворювань, але його часто можна запобігти або відтермінувати.
 
 Фактори ризику, які можна змінити:
@@ -110,7 +110,7 @@ const posts = [
     id: 6,
     title: "Вітамін D: більше, ніж вітамін",
     category: "Вітаміни",
-    image: "/vitamin-d-sunshine-health-medical-soft-warm-tones.jpg",
+    image: "/endocrinologist-landing-page/vitamin-d-sunshine-health-medical-soft-warm-tones.jpg",
     content: `Вітамін D насправді є прогормоном і впливає на значно більше процесів, ніж просто здоров'я кісток.
 
 Функції вітаміну D:
@@ -136,7 +136,7 @@ const posts = [
 export function InsightsSection() {
   const [selectedPost, setSelectedPost] = useState<(typeof posts)[0] | null>(null)
   const drawerRef = useRef<HTMLDivElement | null>(null)
-  const isMobile = useIsMobile()
+ 
 
   useEffect(() => {
     function isEventInsideDrawer(e: Event) {
@@ -147,7 +147,7 @@ export function InsightsSection() {
 
     function wheelHandler(e: WheelEvent) {
       if (!selectedPost) return
-      if (isMobile) return // no need, drawer doesn't scroll
+
       if (!isEventInsideDrawer(e)) {
         e.preventDefault()
         e.stopPropagation()
@@ -156,7 +156,7 @@ export function InsightsSection() {
 
     function touchHandler(e: TouchEvent) {
       if (!selectedPost) return
-      if (isMobile) return // already blocked via touchAction
+
       if (!isEventInsideDrawer(e)) {
         e.preventDefault()
         e.stopPropagation()
@@ -181,9 +181,7 @@ export function InsightsSection() {
       const scrollBarWidth = window.innerWidth - docEl.clientWidth
       if (scrollBarWidth > 0) body.style.paddingRight = `${scrollBarWidth}px`
       body.style.overflow = "hidden"
-      // prevent mobile touch scrolling / overscroll chaining
-      body.style.touchAction = "none"
-      window.dispatchEvent(new CustomEvent("modal:open"))
+         window.dispatchEvent(new CustomEvent("modal:open"))
       // focus drawer when opened
       setTimeout(() => drawerRef.current?.focus(), 0)
       document.addEventListener("wheel", wheelHandler, { passive: false, capture: true })
@@ -194,7 +192,7 @@ export function InsightsSection() {
     return () => {
       body.style.overflow = originalOverflow
       body.style.paddingRight = originalPaddingRight
-      body.style.touchAction = "auto"
+
       if (selectedPost) window.dispatchEvent(new CustomEvent("modal:close"))
       document.removeEventListener("wheel", wheelHandler, { capture: true } as any)
       document.removeEventListener("touchmove", touchHandler, { capture: true } as any)
@@ -272,9 +270,9 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 
-                ${isMobile ? 'overflow-y-hidden' : 'overflow-y-auto'} overscroll-y-contain"
-              ref={drawerRef}
+                             className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] bg-[#1C1C1C] z-50 overflow-y-auto"
+
+               ref={drawerRef}
               tabIndex={-1}
               style={{ WebkitOverflowScrolling: "touch" }}
               onWheel={(e: any) => {
