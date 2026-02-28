@@ -157,10 +157,25 @@ export function InsightsSection() {
     function touchHandler(e: TouchEvent) {
       if (!selectedPost) return
 
-      if (!isEventInsideDrawer(e)) {
-        e.preventDefault()
-        e.stopPropagation()
+      const touch = e.touches[0]
+      if (!touch) return
+
+      const el = drawerRef.current
+      if (el) {
+        const rect = el.getBoundingClientRect()
+        if (
+          touch.clientX >= rect.left &&
+          touch.clientX <= rect.right &&
+          touch.clientY >= rect.top &&
+          touch.clientY <= rect.bottom
+        ) {
+          // gesture started inside drawer – allow default behavior
+          return
+        }
       }
+
+      e.preventDefault()
+      e.stopPropagation()
     }
 
     function keyHandler(e: KeyboardEvent) {
