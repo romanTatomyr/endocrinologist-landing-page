@@ -43,7 +43,7 @@ const posts = [
   },
   {
     id: 3,
-    title: "Метаболічне здоров'я в сучасному житті",
+    title: "Метаболічне здоров'я в сучасноиму житті",
     category: "Метаболізм",
     image: "/endocrinologist-landing-page/journal-metabolic-health-lifestyle-medical-photograph.jpg",
     content: `Сучасний ритм життя часто негативно впливає на наш метаболізм. Сидяча робота, перекуси на ходу, хронічний стрес — усе це створює умови для метаболічних порушень.
@@ -139,24 +139,20 @@ export function InsightsSection() {
   useEffect(() => {
     const body = document.body
     const originalOverflow = body.style.overflow
-    const originalTouchAction = body.style.touchAction
 
     if (selectedPost) {
+      // Блокуємо скрол фону на всій сторінці
       body.style.overflow = "hidden"
       
-      // Блокуємо тач-жести на фоні ТІЛЬКИ для мобільних пристроїв, щоб не ламати мишку на десктопі
-      if (window.matchMedia("(pointer: coarse)").matches) {
-        body.style.touchAction = "none"
-      }
-      
+      // Скидаємо скрол дрейвера вгору при кожному відкритті
       if (drawerRef.current) {
         drawerRef.current.scrollTop = 0
       }
     }
 
     return () => {
+      // Повертаємо стандартний скрол при закритті
       body.style.overflow = originalOverflow
-      body.style.touchAction = originalTouchAction
     }
   }, [selectedPost])
 
@@ -210,6 +206,7 @@ export function InsightsSection() {
       <AnimatePresence>
         {selectedPost && (
           <>
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -219,6 +216,7 @@ export function InsightsSection() {
               onClick={() => setSelectedPost(null)}
             />
 
+            {/* Side Drawer */}
             <motion.div
               ref={drawerRef}
               initial={{ x: "100%" }}
@@ -227,8 +225,8 @@ export function InsightsSection() {
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-50 overflow-y-auto isolate"
               style={{ 
-                WebkitOverflowScrolling: "touch", 
-                overscrollBehaviorY: "contain" 
+                WebkitOverflowScrolling: "touch", // Плавний скрол для iOS
+                overscrollBehaviorY: "contain"    // Запобігає прокрутці фону
               }}
             >
               <button
