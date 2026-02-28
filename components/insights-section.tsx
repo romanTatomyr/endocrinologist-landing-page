@@ -149,9 +149,20 @@ export function InsightsSection() {
         drawerRef.current.scrollTop = 0
       }
 
+      // 3. Блокуємо mouse wheel на фоні (поза дрейвером)
+      function handleWheel(e: WheelEvent) {
+        const target = e.target as HTMLElement
+        if (!drawerRef.current?.contains(target)) {
+          e.preventDefault()
+        }
+      }
+
+      document.addEventListener("wheel", handleWheel, { passive: false })
+
       return () => {
         document.body.style.overflow = originalStyle
         document.body.style.touchAction = ""
+        document.removeEventListener("wheel", handleWheel)
       }
     }
   }, [selectedPost])
