@@ -98,7 +98,7 @@ export function AboutDoctorSection() {
               className="absolute inset-0 scale-110"
             >
               <Image
-                src="/endocrinologist-landing-page/doctor-about.webp"
+                src="/doctor-about.webp"
                 alt="Л-р. Юлія Татомир"
                 fill
                 className="object-cover object-top grayscale"
