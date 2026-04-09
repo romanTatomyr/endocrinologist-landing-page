@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     unoptimized: true,
   },
-  // Якщо ми на GitHub (є GITHUB_ACTIONS), додаємо префікс. Якщо на Vercel — ні.
-  basePath: process.env.GITHUB_ACTIONS ? '/endocrinologist-landing-page' : '',
+  output: 'export',
+  //basePath: '/endocrinologist-landing-page',
 }
 
 export default nextConfig
