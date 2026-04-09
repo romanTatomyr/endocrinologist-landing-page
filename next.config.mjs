@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'export',
-  basePath: '/endocrinologist-landing-page',
+  //basePath: '/endocrinologist-landing-page',
 }
 
 export default nextConfig
