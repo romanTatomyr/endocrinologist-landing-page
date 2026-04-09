@@ -10,7 +10,7 @@ import { AboutDoctorSection } from "@/components/about-doctor-section"
 import { InsightsSection } from "@/components/insights-section"
 import { FooterSection } from "@/components/footer-section"
 import { BookingModal } from "@/components/booking-modal"
-import EasyWeekWidget from "@/components/EasyWeekWidget"
+
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false)
@@ -77,7 +77,7 @@ export default function Home() {
       </main>
       <FooterSection onBookingClick={handleBookingClick} />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-      <EasyWeekWidget />
+     
     </div>
   )
 }
