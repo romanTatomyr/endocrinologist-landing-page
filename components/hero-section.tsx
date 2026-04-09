@@ -13,7 +13,6 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-    layoutEffect: false, // Виправлення помилки гідратації
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 200])
