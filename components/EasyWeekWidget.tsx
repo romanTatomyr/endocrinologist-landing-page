@@ -1,3 +1,5 @@
+'use client'; // ЦЕ МАЄ БУТИ ПЕРШИМ РЯДКОМ
+
 import { useEffect } from 'react';
 
 // Повідомляємо TypeScript, що у об'єкта window з'являться нові властивості від EasyWeek
