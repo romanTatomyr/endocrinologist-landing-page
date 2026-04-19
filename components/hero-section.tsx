@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import BookingModal from './BookingModal';
 
 interface HeroSectionProps {
   onBookingClick: () => void
@@ -77,13 +78,20 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
           <span>ЛНМУ ім.Д.Галицького</span>
         </motion.div>
 
-        <button
-          onClick={onBookingClick}
-          className="mt-12 px-10 py-4 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm tracking-[0.2em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-500 cursor-pointer bg-transparent"
-        >
-          Записатися на консультацію
-        </button>
+<button
+  onClick={() => {
+    const widget = (window as any).ewWidget;
+    if (widget && typeof widget.show === 'function') {
+      widget.show();
+    }
+  }}
+  className="mt-12 px-10 py-4 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm tracking-[0.2em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-500 cursor-pointer bg-transparent"
+>
+  Записатися на консультацію
+</button>
+<BookingModal />
       </motion.div>
+      
     </section>
   )
 }

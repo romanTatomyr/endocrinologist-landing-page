@@ -3,34 +3,25 @@ import { useEffect } from 'react';
 
 export default function EasyWeekWidget() {
   useEffect(() => {
-    // Функція, яка запустить віджет
-    const initWidget = () => {
-      if (window.EasyWeekWidget) {
-        new window.EasyWeekWidget({
-          url: 'https://booking.easyweek.com.ua/l-r-endokrinolog',
-          button: {
-            text: 'Онлайн-запис',
-            showText: true,
-            color: '#ffffff',
-            background: '#36ab48',
-            textColor: '#383868',
-            textBackground: '#ffffff'
-          }
-        });
-      }
+    // Якщо скрипт вже є, не створюємо дублікат
+    if (document.getElementById('easyweek-script')) return;
+
+    const script = document.createElement('script');
+    script.id = 'easyweek-script';
+    script.src = 'https://booking.easyweek.com.ua/widget.js';
+    script.async = true;
+    
+    script.onload = () => {
+      // Ініціалізація в МАНУАЛЬНОМУ режимі
+      // Це головна фішка: віджет "спить" і чекає на команду .open()
+      (window as any).ewWidget = new (window as any).EasyWeekWidget({
+        url: 'https://booking.easyweek.com.ua/l-r-endokrinolog',
+        trigger: 'manual', 
+      });
     };
 
-    // Якщо скрипт вже завантажений — запускаємо, якщо ні — завантажуємо
-    if (window.EasyWeekWidget) {
-      initWidget();
-    } else {
-      const script = document.createElement('script');
-      script.src = 'https://booking.easyweek.com.ua/widget.js';
-      script.async = true;
-      script.onload = initWidget;
-      document.body.appendChild(script);
-    }
+    document.body.appendChild(script);
   }, []);
 
-  return null;
+  return null; // Цей компонент нічого не малює, він просто завантажує скрипт
 }
