@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Manrope, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import EasyWeekWidget from '../components/EasyWeekWidget' // Переконайся, що файл лежить у папці components
 import "./globals.css"
 
 const manrope = Manrope({ subsets: ["latin", "cyrillic"], variable: "--font-manrope" })
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${manrope.variable} ${geistMono.variable} font-sans antialiased bg-[#1C1C1C] text-[#EAEAEA]`} suppressHydrationWarning>
         {children}
         <Analytics />
+        <EasyWeekWidget /> {/* Віджет буде відображатися на всіх сторінках */}
       </body>
     </html>
   )
