@@ -9,9 +9,9 @@ export function PhilosophySection() {
       <div className="max-w-7xl mx-auto">
         <motion.p
           className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           Філософія
@@ -20,28 +20,57 @@ export function PhilosophySection() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
           {/* Card 1 - Large headline card (spans 2 cols) */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true }}
-            className="md:col-span-2 md:row-span-2 bg-[#252525] p-8 md:p-12 flex flex-col justify-end min-h-[300px] md:min-h-[400px]"
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.3 }
+            }}
+            className="md:col-span-2 md:row-span-2 bg-[#252525] p-8 md:p-12 flex flex-col justify-end min-h-[300px] md:min-h-[400px] cursor-pointer"
           >
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#EAEAEA] leading-tight">
+            <motion.h3 
+              className="text-3xl md:text-4xl lg:text-5xl font-light text-[#EAEAEA] leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
               Лікуємо людину,
               <br />
-              <span className="text-[#EAEAEA]/60">а не результати аналізів.</span>
-            </h3>
+              <motion.span 
+                className="text-[#EAEAEA]/60"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                а не результати аналізів.
+              </motion.span>
+            </motion.h3>
           </motion.div>
 
           {/* Card 2 - Image card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true }}
-            className="md:col-span-2 relative overflow-hidden min-h-[250px]"
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+            className="md:col-span-2 relative overflow-hidden min-h-[250px] cursor-pointer"
           >
-            <Image src="/abstract-medical-soft-teal-waves-zen-minimalist.jpg" alt="Абстрактна медична ілюстрація" fill className="object-cover" />
+            <motion.div
+              initial={{ scale: 1.2 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 1.2, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Image src="/abstract-medical-soft-teal-waves-zen-minimalist.jpg" alt="Абстрактна медична ілюстрація" fill className="object-cover" />
+            </motion.div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C]/60 to-transparent" />
           </motion.div>
 

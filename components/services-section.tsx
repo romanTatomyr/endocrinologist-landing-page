@@ -62,9 +62,9 @@ export function ServicesSection() {
       <div className="max-w-7xl mx-auto">
         <motion.p
           className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           Послуги
@@ -82,19 +82,61 @@ export function ServicesSection() {
                 widget.show();
               }
             }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 50, rotateX: -15 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.15,
+              ease: [0.25, 0.1, 0.25, 1]
+            }}
             viewport={{ once: true }}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.3 }
+            }}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-8">
-                <span className="text-[#555555] text-sm font-light">0{index + 1}</span>
-                <h3 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#EAEAEA] group-hover:text-[#999999] transition-colors duration-500">
+                <motion.span 
+                  className="text-[#555555] text-sm font-light"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.15 + 0.3,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                  viewport={{ once: true }}
+                >
+                  0{index + 1}
+                </motion.span>
+                <motion.h3 
+                  className="text-4xl md:text-6xl lg:text-7xl font-light text-[#EAEAEA] group-hover:text-[#999999] transition-colors duration-500"
+                  initial={{ x: -30, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.15 + 0.2,
+                    ease: [0.25, 0.1, 0.25, 1]
+                  }}
+                  viewport={{ once: true }}
+                >
                   {service.title}
-                </h3>
+                </motion.h3>
               </div>
-              <motion.div className="hidden md:block text-[#666666] text-sm" initial={{ x: 0 }} whileHover={{ x: 10 }}>
+              <motion.div 
+                className="hidden md:block text-[#666666] text-sm"
+                initial={{ x: 0, opacity: 0 }}
+                whileHover={{ x: 10 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.15 + 0.4,
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+                viewport={{ once: true }}
+              >
                 {service.description}
               </motion.div>
             </div>

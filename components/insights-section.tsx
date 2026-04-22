@@ -179,9 +179,9 @@ export function InsightsSection() {
     <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-[#1C1C1C]">
       <div className="max-w-7xl mx-auto">
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
         >
@@ -192,30 +192,63 @@ export function InsightsSection() {
           {posts.map((post, index) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.15,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
               viewport={{ once: true }}
               onClick={() => setSelectedPost(post)}
               className="group cursor-pointer bg-[#252525] overflow-hidden"
+              whileHover={{ 
+                y: -8,
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={post.image || "/placeholder.svg"}
-                  alt={post.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                <motion.div
+                  initial={{ scale: 1.2 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 1.2, delay: index * 0.15 + 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <Image
+                    src={post.image || "/placeholder.svg"}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#252525] to-transparent opacity-60" />
               </div>
 
               <div className="p-6">
-                <span className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-4">
+                <motion.span 
+                  className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    backgroundColor: "rgba(234, 234, 234, 0.2)",
+                    color: "rgba(234, 234, 234, 0.8)"
+                  }}
+                >
                   {post.category}
-                </span>
-                <h3 className="text-xl md:text-2xl font-light text-[#EAEAEA] leading-tight group-hover:text-[#EAEAEA]/80 transition-colors duration-300">
+                </motion.span>
+                <motion.h3 
+                  className="text-xl md:text-2xl font-light text-[#EAEAEA] leading-tight group-hover:text-[#EAEAEA]/80 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.15 + 0.4 }}
+                  viewport={{ once: true }}
+                >
                   {post.title}
-                </h3>
+                </motion.h3>
               </div>
             </motion.article>
           ))}

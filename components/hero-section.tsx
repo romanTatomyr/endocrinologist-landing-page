@@ -18,6 +18,8 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 200])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 1.05])
+  const rotate = useTransform(scrollYProgress, [0, 0.5], [0, -1])
 
   return (
     <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-[#1C1C1C]">
@@ -39,7 +41,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         />
       </motion.div>
 
-      <motion.div className="relative z-20 text-center px-4" style={{ opacity }}>
+      <motion.div className="relative z-20 text-center px-4" style={{ opacity, scale, rotate }}>
         <motion.p
           className="text-sm md:text-base tracking-[0.3em] uppercase text-[#999999] mb-8 cursor-pointer"
           onClick={() => {
@@ -51,6 +53,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
+          whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
         >
           Ендокринолог та спеціаліст з гормонального здоров'я
         </motion.p>
@@ -67,8 +70,9 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           >
-            ЮЛЯ
+            ЮЛІЯ
           </motion.h1>
         </div>
 
@@ -84,6 +88,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           >
             ТАТОМИР
           </motion.h1>
@@ -95,24 +100,44 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
         >
-          <span>5+ Років досвіду</span>
+          <motion.span 
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
+          >
+            5+ Років досвіду
+          </motion.span>
           <span className="w-1 h-1 rounded-full bg-[#999999]" />
-          <span>ІФНМУ</span>
+          <motion.span 
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
+          >
+            ІФНМУ
+          </motion.span>
           <span className="w-1 h-1 rounded-full bg-[#999999]" />
-          <span>ЛНМУ ім.Д.Галицького</span>
+          <motion.span 
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
+          >
+            ЛНМУ ім.Д.Галицького
+          </motion.span>
         </motion.div>
 
-<button
-  onClick={() => {
-    const widget = (window as any).ewWidget;
-    if (widget && typeof widget.show === 'function') {
-      widget.show();
-    }
-  }}
-  className="mt-12 px-10 py-4 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm tracking-[0.2em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-500 cursor-pointer bg-transparent"
->
-  Записатися на консультацію
-</button>
+        <motion.button
+          onClick={() => {
+            const widget = (window as any).ewWidget;
+            if (widget && typeof widget.show === 'function') {
+              widget.show();
+            }
+          }}
+          className="mt-12 px-10 py-4 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm tracking-[0.2em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-500 cursor-pointer bg-transparent"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Записатися на консультацію
+        </motion.button>
 
 {/* <BookingModal /> тут модалка через вікно*/}
       </motion.div>
