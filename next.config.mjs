@@ -2,11 +2,12 @@
 
 const repo = 'endocrinologist-landing-page'
 
-// GitHub Pages завжди билдить production
-const isGithubPages =
+const isGithub =
   process.env.GITHUB_ACTIONS === 'true'
 
 const nextConfig = {
+  output: 'export',
+
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -15,10 +16,8 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  output: 'export',
-
-  basePath: isGithubPages ? `/${repo}` : '',
-  assetPrefix: isGithubPages ? `/${repo}/` : '',
+  basePath: isGithub ? `/${repo}` : '',
+  assetPrefix: isGithub ? `/${repo}/` : '',
 }
 
 export default nextConfig
