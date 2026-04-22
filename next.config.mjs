@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-const isGithub = process.env.GITHUB_ACTIONS === 'true'
 const repo = 'endocrinologist-landing-page'
 
-const nextConfig = {
-  output: 'export',
+// GitHub Pages завжди билдить production
+const isGithubPages =
+  process.env.GITHUB_ACTIONS === 'true'
 
+const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -14,8 +15,10 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  basePath: isGithub ? `/${repo}` : '',
-  assetPrefix: isGithub ? `/${repo}/` : '',
+  output: 'export',
+
+  basePath: isGithubPages ? `/${repo}` : '',
+  assetPrefix: isGithubPages ? `/${repo}/` : '',
 }
 
 export default nextConfig
