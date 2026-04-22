@@ -138,8 +138,8 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         >
           Записатися на консультацію
         </motion.button>
-
-{/* <BookingModal /> тут модалка через вікно*/}
+<span className="w-1 h-1 rounded-full bg-[#999999]" />
+<BookingModal />
       </motion.div>
       
     </section>
