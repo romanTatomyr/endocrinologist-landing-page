@@ -21,8 +21,8 @@ export function MagneticButton({ children, className = "", onClick }: MagneticBu
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
 
-    const distanceX = (e.clientX - centerX) * 0.3
-    const distanceY = (e.clientY - centerY) * 0.3
+    const distanceX = (e.clientX - centerX) * 0.8
+    const distanceY = (e.clientY - centerY) * 0.8
 
     setPosition({ x: distanceX, y: distanceY })
   }
@@ -39,7 +39,7 @@ export function MagneticButton({ children, className = "", onClick }: MagneticBu
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15 }}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
     >
       {children}
     </motion.button>

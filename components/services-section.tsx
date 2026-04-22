@@ -7,22 +7,22 @@ const services = [
   {
     title: "Здоров'я щитоподібної залози",
     description: "Комплексна допомога",
-    image: "/thyroid-medical-illustration-soft-blue-tones-anatom.jpg",
+    image: "/journal-thyroid-health-medical-illustration-butterfly.jpg",
   },
   {
     title: "Контроль діабету",
     description: "Сучасне управління глюкозою",
-    image: "/diabetes-care-medical-illustration-glucose-monitori.jpg",
+    image: "/journal-diabetes-prevention-healthy-lifestyle-medical.jpg",
   },
   {
     title: "Гормональний баланс",
     description: "Відновлення рівноваги",
-    image: "/hormonal-balance-medical-illustration-abstract-endo.jpg",
+    image: "/journal-hormonal-balance-abstract-medical-art-soft-bl.jpg",
   },
   {
     title: "Метаболічне здоров'я",
     description: "Оптимізація обміну речовин",
-    image: "/metabolic-wellness-medical-illustration-healthy-lif.jpg",
+    image: "/journal-metabolic-health-lifestyle-medical-photograph.jpg",
   },
 ]
 
@@ -41,8 +41,8 @@ export function ServicesSection() {
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect()
-        mouseX.set(e.clientX - rect.left - 150)
-        mouseY.set(e.clientY - rect.top - 100)
+        mouseX.set(e.clientX - rect.left + 20)
+        mouseY.set(e.clientY - rect.top - 250)
       }
     }
 
@@ -76,6 +76,12 @@ export function ServicesSection() {
             className="border-t border-[#333333] py-6 md:py-8 cursor-pointer group"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onClick={() => {
+              const widget = (window as any).ewWidget;
+              if (widget && typeof widget.show === 'function') {
+                widget.show();
+              }
+            }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -97,9 +103,8 @@ export function ServicesSection() {
         <div className="border-t border-[#333333]" />
       </div>
 
-      {/* Floating cursor-following image */}
       <motion.div
-        className="pointer-events-none fixed z-30 w-[300px] h-[200px] overflow-hidden"
+        className="pointer-events-none fixed z-50 w-[300px] h-[200px] overflow-hidden"
         style={{
           x: imageX,
           y: imageY,

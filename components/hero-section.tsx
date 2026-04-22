@@ -26,7 +26,13 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         <motion.img
           src="/doctor-hero.webp"
           alt="Л-р. Юлія Татомир"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-top cursor-pointer"
+          onClick={() => {
+            const widget = (window as any).ewWidget;
+            if (widget && typeof widget.show === 'function') {
+              widget.show();
+            }
+          }}
           initial={{ scale: 1.2, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
@@ -35,7 +41,13 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
       <motion.div className="relative z-20 text-center px-4" style={{ opacity }}>
         <motion.p
-          className="text-sm md:text-base tracking-[0.3em] uppercase text-[#999999] mb-8"
+          className="text-sm md:text-base tracking-[0.3em] uppercase text-[#999999] mb-8 cursor-pointer"
+          onClick={() => {
+            const widget = (window as any).ewWidget;
+            if (widget && typeof widget.show === 'function') {
+              widget.show();
+            }
+          }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -45,7 +57,13 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
         <div className="overflow-hidden">
           <motion.h1
-            className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-[0.9] tracking-[-0.02em] text-[#EAEAEA]"
+            className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-[0.9] tracking-[-0.02em] text-[#EAEAEA] cursor-pointer"
+            onClick={() => {
+              const widget = (window as any).ewWidget;
+              if (widget && typeof widget.show === 'function') {
+                widget.show();
+              }
+            }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
@@ -56,7 +74,13 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
         <div className="overflow-hidden">
           <motion.h1
-            className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-[0.9] tracking-[-0.02em] text-[#EAEAEA]"
+            className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-[0.9] tracking-[-0.02em] text-[#EAEAEA] cursor-pointer"
+            onClick={() => {
+              const widget = (window as any).ewWidget;
+              if (widget && typeof widget.show === 'function') {
+                widget.show();
+              }
+            }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
@@ -89,7 +113,8 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 >
   Записатися на консультацію
 </button>
-<BookingModal />
+
+{/* <BookingModal /> тут модалка через вікно*/}
       </motion.div>
       
     </section>
