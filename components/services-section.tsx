@@ -6,22 +6,22 @@ import { motion, useMotionValue, useSpring } from "framer-motion"
 const services = [
   {
     title: "Здоров'я щитоподібної залози",
-    description: "Комплексна допомога",
+    description: "Втома, волосся, шкіра",
     image: "/journal-thyroid-health-medical-illustration-butterfly.jpg",
   },
   {
     title: "Контроль діабету",
-    description: "Сучасне управління глюкозою",
+    description: "Цукор, спрага, оніміння",
     image: "/journal-diabetes-prevention-healthy-lifestyle-medical.jpg",
   },
   {
     title: "Гормональний баланс",
-    description: "Відновлення рівноваги",
+    description: "Цикл, припливи, настрій",
     image: "/journal-hormonal-balance-abstract-medical-art-soft-bl.jpg",
   },
   {
     title: "Метаболічне здоров'я",
-    description: "Оптимізація обміну речовин",
+    description: "Вага, холестерин, втома",
     image: "/journal-metabolic-health-lifestyle-medical-photograph.jpg",
   },
 ]

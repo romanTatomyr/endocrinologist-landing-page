@@ -71,8 +71,8 @@ export default function Home() {
       <main>
         <HeroSection onBookingClick={handleBookingClick} />
         <ServicesSection />
-        <AboutDoctorSection />
         <PhilosophySection />
+        <AboutDoctorSection />
         <InsightsSection />
       </main>
       <FooterSection onBookingClick={handleBookingClick} />

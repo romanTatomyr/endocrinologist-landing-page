@@ -55,8 +55,9 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
           transition={{ duration: 1, delay: 0.5 }}
           whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
         >
-          Ендокринолог та спеціаліст з гормонального здоров'я
+          Лікар-ендокринолог
         </motion.p>
+        
 
         <div className="overflow-hidden">
           <motion.h1
@@ -104,21 +105,21 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
             className="cursor-pointer"
             whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
           >
-            5+ Років досвіду
+            ДОКАЗОВА МЕДИЦИНА
           </motion.span>
           <span className="w-1 h-1 rounded-full bg-[#999999]" />
           <motion.span 
             className="cursor-pointer"
             whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
           >
-            ІФНМУ
+            ІНДИВІДУАЛЬНИЙ ПІДХІД
           </motion.span>
           <span className="w-1 h-1 rounded-full bg-[#999999]" />
           <motion.span 
             className="cursor-pointer"
             whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
           >
-            ЛНМУ ім.Д.Галицького
+            ОНЛАЙН ТА ОФЛАЙН ПРИЙОМИ
           </motion.span>
         </motion.div>
 
@@ -130,7 +131,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
             }
           }}
           className="mt-12 px-10 py-4 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm tracking-[0.2em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-500 cursor-pointer bg-transparent"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
           whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
@@ -138,6 +139,27 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         >
           Записатися на консультацію
         </motion.button>
+
+        <motion.div
+          className="mt-12 flex items-center justify-center gap-8 text-sm text-[#999999]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          <motion.span 
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
+          >
+            ТИСМЕНИЦЯ
+          </motion.span>
+          <span className="w-1 h-1 rounded-full bg-[#999999]" />
+          <motion.span 
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05, color: "#EAEAEA", transition: { duration: 0.2 } }}
+          >
+            ІВАНО-ФРАНКІВСЬК
+          </motion.span>
+        </motion.div>
 
 {/* <BookingModal /> */}
       </motion.div>

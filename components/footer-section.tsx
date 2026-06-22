@@ -39,7 +39,12 @@ export function FooterSection({ onBookingClick }: FooterSectionProps) {
           className="flex justify-center"
         >
           <MagneticButton
-            onClick={onBookingClick}
+            onClick={() => {
+            const widget = (window as any).ewWidget;
+            if (widget && typeof widget.show === 'function') {
+              widget.show();
+            }
+          }}
             className="w-48 h-48 md:w-56 md:h-56 rounded-full bg-[#EAEAEA] text-[#1C1C1C] flex items-center justify-center text-lg md:text-xl font-light tracking-wide hover:bg-[#999999] transition-colors duration-500 cursor-pointer"
           >
             <motion.span
