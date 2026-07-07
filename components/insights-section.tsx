@@ -135,6 +135,8 @@ const posts = [
 export function InsightsSection() {
   const [selectedPost, setSelectedPost] = useState<(typeof posts)[0] | null>(null)
   const drawerRef = useRef<HTMLDivElement | null>(null)
+  const gridRef = useRef<HTMLDivElement | null>(null)
+  const [imagesEager, setImagesEager] = useState(false)
 
   useEffect(() => {
     if (selectedPost) {
@@ -175,6 +177,31 @@ export function InsightsSection() {
     }
   }, [selectedPost])
 
+  useEffect(() => {
+    // Observe when the insights grid is near viewport and then switch images to eager/priority
+    const grid = gridRef.current
+    if (!grid) return
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting || entry.intersectionRatio > 0) {
+              setImagesEager(true)
+              obs.disconnect()
+            }
+          })
+        },
+        { root: null, rootMargin: '400px', threshold: 0.01 }
+      )
+      obs.observe(grid)
+      return () => obs.disconnect()
+    } else {
+      // fallback: enable eager loading
+      setImagesEager(true)
+    }
+  }, [])
+
   return (
     <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-[#1C1C1C]">
       <div className="max-w-7xl mx-auto">
@@ -188,41 +215,32 @@ export function InsightsSection() {
           Інсайти
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, index) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.15,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.35 }}
               viewport={{ once: true }}
               onClick={() => setSelectedPost(post)}
               className="group cursor-pointer bg-[#252525] overflow-hidden"
-              whileHover={{ 
-                y: -8,
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
+              whileHover={{ y: -6, scale: 1.01, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.98 }}
             >
               <div className="relative h-48 overflow-hidden">
-                <motion.div
-                  initial={{ scale: 1.2 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 1.2, delay: index * 0.15 + 0.2 }}
-                  viewport={{ once: true }}
-                >
+                <div>
                   <Image
                     src={post.image || "/placeholder.svg"}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={75}
+                    loading={imagesEager ? 'eager' : 'lazy'}
+                    priority={imagesEager && index < 2}
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                </motion.div>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#252525] to-transparent opacity-60" />
               </div>
 
@@ -294,6 +312,8 @@ export function InsightsSection() {
                   src={selectedPost.image || "/placeholder.svg"}
                   alt={selectedPost.title}
                   fill
+                  quality={80}
+                  priority
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] via-[#1C1C1C]/50 to-transparent" />
