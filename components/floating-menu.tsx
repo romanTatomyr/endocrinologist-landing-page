@@ -85,7 +85,12 @@ export function FloatingMenu({ onBookingClick }: FloatingMenuProps) {
                 ))}
 
                 <motion.button
-                  onClick={handleBookingClick}
+                  onClick={() => {
+            const widget = (window as any).ewWidget;
+            if (widget && typeof widget.show === 'function') {
+              widget.show();
+            }
+          }}
                   initial={{ opacity: 0, y: 35 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 35 }}
