@@ -48,7 +48,7 @@ function MaskRevealLine({
     <div ref={ref} className="overflow-hidden">
       <motion.p
         style={ready ? { y, opacity } : { y: 40, opacity: 0 }}
-        className="text-xl md:text-2xl lg:text-3xl text-[#EAEAEA]/80 font-light leading-relaxed"
+        className="text-sm sm:text-base md:text-lg lg:text-xl text-[#EAEAEA]/80 font-light leading-relaxed"
       >
         {children}
       </motion.p>
@@ -114,7 +114,7 @@ export function AboutDoctorSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-light text-[#EAEAEA] mb-12 tracking-tight"
+              className="text-2xl md:text-3xl lg:text-4xl font-light text-[#EAEAEA] mb-12 tracking-tight"
             >
               Юлія Татомир
             </motion.h2>

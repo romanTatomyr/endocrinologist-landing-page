@@ -61,7 +61,7 @@ export function ServicesSection() {
     >
       <div className="max-w-7xl mx-auto">
         <motion.p
-          className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-[#EAEAEA]/40 text-xs md:text-sm tracking-[0.3em] uppercase mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -112,7 +112,7 @@ export function ServicesSection() {
                   0{index + 1}
                 </motion.span>
                 <motion.h3 
-                  className="text-4xl md:text-6xl lg:text-7xl font-light text-[#EAEAEA] group-hover:text-[#999999] transition-colors duration-500"
+                  className="text-3xl md:text-5xl lg:text-6xl font-light text-[#EAEAEA] group-hover:text-[#999999] transition-colors duration-500"
                   initial={{ x: -30, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ 
@@ -126,7 +126,7 @@ export function ServicesSection() {
                 </motion.h3>
               </div>
               <motion.div 
-                className="hidden md:block text-[#666666] text-sm"
+                className="hidden md:block text-[#666666] text-xs md:text-sm"
                 initial={{ x: 0, opacity: 0 }}
                 whileHover={{ x: 10 }}
                 whileInView={{ opacity: 1 }}
@@ -146,14 +146,14 @@ export function ServicesSection() {
       </div>
 
       <motion.div
-        className="pointer-events-none fixed z-50 w-[300px] h-[200px] overflow-hidden"
+        className="pointer-events-none fixed z-50 hidden sm:block sm:w-44 sm:h-32 md:w-64 md:h-44 overflow-hidden"
         style={{
           x: imageX,
           y: imageY,
           opacity: hoveredIndex !== null ? 1 : 0,
-          scale: hoveredIndex !== null ? 1 : 0.8,
+          scale: hoveredIndex !== null ? 1 : 0.85,
         }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.25 }}
       >
         {services.map((service, index) => (
           <motion.img

@@ -105,7 +105,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <X size={20} />
               </button>
 
-              <div className="pt-12 px-6 pb-6 md:pt-10 md:px-8 md:pb-8">
+              <div className="pt-10 px-4 pb-6 md:pt-12 md:px-8 md:pb-8">
               <motion.p
                 className="text-[#EAEAEA]/40 text-xs tracking-[0.3em] uppercase mb-2"
                 initial={{ opacity: 0, y: 10 }}
@@ -116,7 +116,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               </motion.p>
 
               <motion.h2
-                className="text-2xl md:text-3xl font-light text-[#EAEAEA] mb-6"
+                className="text-xl md:text-2xl lg:text-3xl font-light text-[#EAEAEA] mb-6 break-words"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -147,7 +147,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       setFormData({ ...formData, name: e.target.value })
                     }
                     required
-                    className="w-full bg-transparent border-b border-[#333333] py-2 text-base md:text-lg text-[#EAEAEA] placeholder:text-[#555555] focus:border-[#EAEAEA] focus:outline-none transition-colors"
+                    className="w-full bg-transparent border-b border-[#333333] py-2 text-sm md:text-base text-[#EAEAEA] placeholder:text-[#555555] focus:border-[#EAEAEA] focus:outline-none transition-colors"
                   />
 
                   <input
@@ -179,7 +179,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       setFormData({ ...formData, message: e.target.value })
                     }
                     rows={2}
-                    className="w-full bg-transparent border-b border-[#333333] py-2 text-base md:text-lg text-[#EAEAEA] placeholder:text-[#555555] focus:border-[#EAEAEA] focus:outline-none transition-colors resize-none"
+                    className="w-full bg-transparent border-b border-[#333333] py-2 text-sm md:text-base text-[#EAEAEA] placeholder:text-[#555555] focus:border-[#EAEAEA] focus:outline-none transition-colors resize-none"
                   />
 
                   <div className="pt-2 flex justify-center">

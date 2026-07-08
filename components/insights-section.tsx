@@ -224,7 +224,7 @@ export function InsightsSection() {
               transition={{ duration: 0.35 }}
               viewport={{ once: true }}
               onClick={() => setSelectedPost(post)}
-              className="group cursor-pointer bg-[#252525] overflow-hidden"
+              className="group cursor-pointer bg-[#252525] overflow-hidden min-w-0"
               whileHover={{ y: -6, scale: 1.01, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.98 }}
             >
@@ -244,7 +244,7 @@ export function InsightsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#252525] to-transparent opacity-60" />
               </div>
 
-              <div className="p-6">
+              <div className="p-6 min-w-0">
                 <motion.span 
                   className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-4"
                   initial={{ opacity: 0, x: -20 }}
@@ -259,7 +259,7 @@ export function InsightsSection() {
                   {post.category}
                 </motion.span>
                 <motion.h3 
-                  className="text-xl md:text-2xl font-light text-[#EAEAEA] leading-tight group-hover:text-[#EAEAEA]/80 transition-colors duration-300"
+                  className="text-base sm:text-xl md:text-2xl font-light text-[#EAEAEA] leading-tight group-hover:text-[#EAEAEA]/80 transition-colors duration-300 break-words"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.15 + 0.4 }}
@@ -319,18 +319,18 @@ export function InsightsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] via-[#1C1C1C]/50 to-transparent" />
               </div>
 
-              <div className="p-8 md:p-12 -mt-24 relative z-10">
+                <div className="p-6 md:p-8 -mt-20 md:-mt-24 relative z-10">
                 <span className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-6">
                   {selectedPost.category}
                 </span>
 
-                <h2 className="text-3xl md:text-4xl font-light text-[#EAEAEA] mb-8 leading-tight">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#EAEAEA] mb-6 md:mb-8 leading-tight break-words">
                   {selectedPost.title}
                 </h2>
 
-                <div className="prose prose-invert prose-lg max-w-none">
+                <div className="prose prose-invert max-w-none">
                   {selectedPost.content.split("\n\n").map((paragraph, index) => (
-                    <p key={index} className="text-[#EAEAEA]/70 text-lg leading-relaxed mb-6">
+                    <p key={index} className="text-[#EAEAEA]/70 text-base md:text-lg leading-relaxed mb-6 break-words">
                       {paragraph}
                     </p>
                   ))}

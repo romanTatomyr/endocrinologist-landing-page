@@ -58,7 +58,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
           Розбір аналізів
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
 
           {/* Card 1 - Головний меседж (background: /w_u_get) */}
           <motion.div
@@ -75,7 +75,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
 
             <div className="relative z-10">
               <motion.h3
-                className="text-3xl md:text-4xl lg:text-5xl font-light text-[#EAEAEA] leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#EAEAEA] leading-tight break-words"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -93,7 +93,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
                 viewport={{ once: true }}
                 className="flex flex-col gap-6"
               >
-                <p className="text-[#EAEAEA]/50 text-base leading-relaxed max-w-sm">
+                <p className="text-[#EAEAEA]/50 text-base leading-relaxed max-w-full sm:max-w-sm">
                   Розберемо результати, пояснимо відхилення і скажемо що робити далі — без зайвого.
                 </p>
                 <motion.button
@@ -103,7 +103,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
                       widget.show();
                     }
                   }}
-                  className="self-start px-8 py-3.5 bg-white text-[#1C1C1C] text-[11px] tracking-[0.16em] uppercase font-medium hover:bg-[#EAEAEA] transition-colors duration-300 cursor-pointer"
+                  className="self-start px-6 sm:px-8 py-3 bg-white text-[#1C1C1C] text-[11px] tracking-[0.16em] uppercase font-medium hover:bg-[#EAEAEA] transition-colors duration-300 cursor-pointer flex-shrink-0"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -129,11 +129,11 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
                   "Пояснення що є нормою саме для вас",
                   "Конкретні рекомендації або направлення",
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 mt-1 h-7 w-7 flex items-center justify-center text-[#6ecfaa]">
+                  <li key={i} className="flex items-start gap-3 min-w-0">
+                    <div className="flex-shrink-0 mt-1 h-6 w-6 sm:h-7 sm:w-7 flex items-center justify-center text-[#6ecfaa]">
                       {icons[i]}
                     </div>
-                    <span className="text-[#EAEAEA]/70 text-base md:text-lg leading-relaxed">{item}</span>
+                    <span className="text-[#EAEAEA]/70 text-sm md:text-base lg:text-lg leading-relaxed break-words">{item}</span>
                   </li>
                 ))
               }
@@ -162,10 +162,10 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
               </div>
 
             <div className="relative z-10">
-              <span className="text-[#1C1C1C]/40 text-sm tracking-[0.2em] uppercase">Формат</span>
+              <span className="text-[#1C1C1C]/40 text-xs sm:text-sm tracking-[0.2em] uppercase">Формат</span>
               <div>
-                <span className="text-4xl md:text-5xl font-light text-[#1C1C1C]">Онлайн</span>
-                <p className="text-[#1C1C1C]/60 text-base mt-2">або офлайн прийом</p>
+                <span className="text-3xl sm:text-4xl md:text-5xl font-light text-[#1C1C1C]">Онлайн</span>
+                <p className="text-[#1C1C1C]/60 text-sm sm:text-base mt-2">або офлайн прийом</p>
               </div>
             </div>
           </motion.button>

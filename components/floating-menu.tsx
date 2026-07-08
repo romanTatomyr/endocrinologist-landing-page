@@ -28,7 +28,7 @@ export function FloatingMenu({ onBookingClick }: FloatingMenuProps) {
       {/* Floating hamburger button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-8 right-8 z-50 w-14 h-14 rounded-full bg-[#EAEAEA] flex items-center justify-center cursor-pointer"
+        className="fixed top-4 right-4 sm:top-8 sm:right-8 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#EAEAEA] flex items-center justify-center cursor-pointer"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -77,8 +77,8 @@ export function FloatingMenu({ onBookingClick }: FloatingMenuProps) {
                     initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 35 }}
-                    transition={{ duration: 0.36, delay: index * 0.07 }}
-                    className="text-4xl md:text-6xl font-light text-[#EAEAEA] hover:text-[#999999] transition-colors duration-200"
+                    transition={{ duration: 0.32, delay: index * 0.06 }}
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#EAEAEA] hover:text-[#999999] transition-colors duration-200"
                   >
                     {item.label}
                   </motion.a>

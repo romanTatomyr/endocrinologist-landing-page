@@ -35,13 +35,15 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
               widget.show();
             }
           }}
-          initial={{ scale: 1.2, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
         />
       </motion.div>
 
       <motion.div className="relative z-20 text-center px-4" style={{ opacity, scale, rotate }}>
+        {/* limit width so large text/buttons don't overflow small viewports */}
+        <div className="mx-auto w-full max-w-[min(92vw,1100px)] box-border">
         <motion.p
           className="text-sm md:text-base tracking-[0.3em] uppercase text-[#999999] mb-8 cursor-pointer"
           onClick={() => {
@@ -61,16 +63,16 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
         <div className="overflow-hidden">
           <motion.h1
-            className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-[0.9] tracking-[-0.02em] text-[#EAEAEA] cursor-pointer"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7.5rem] font-light leading-[0.95] tracking-[-0.02em] text-[#EAEAEA] cursor-pointer break-words"
             onClick={() => {
               const widget = (window as any).ewWidget;
               if (widget && typeof widget.show === 'function') {
                 widget.show();
               }
             }}
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ y: "30%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
             whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           >
             ЮЛІЯ
@@ -79,16 +81,16 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
 
         <div className="overflow-hidden">
           <motion.h1
-            className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-[0.9] tracking-[-0.02em] text-[#EAEAEA] cursor-pointer"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7.5rem] font-light leading-[0.95] tracking-[-0.02em] text-[#EAEAEA] cursor-pointer break-words"
             onClick={() => {
               const widget = (window as any).ewWidget;
               if (widget && typeof widget.show === 'function') {
                 widget.show();
               }
             }}
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ y: "30%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
             whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           >
             ТАТОМИР
@@ -96,7 +98,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         </div>
 
         <motion.div
-          className="mt-12 flex items-center justify-center gap-8 text-sm text-[#999999]"
+          className="mt-12 flex flex-wrap items-center justify-center gap-2 sm:gap-8 text-xs sm:text-sm text-[#999999]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -130,7 +132,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
               widget.show();
             }
           }}
-          className="mt-12 px-10 py-4 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm tracking-[0.2em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-500 cursor-pointer bg-transparent"
+          className="mt-12 px-4 sm:px-10 py-3 border border-[#EAEAEA]/50 text-[#EAEAEA] text-sm sm:text-base tracking-[0.12em] uppercase hover:bg-[#EAEAEA] hover:text-[#1C1C1C] transition-all duration-300 cursor-pointer bg-transparent max-w-full whitespace-normal"
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
@@ -141,7 +143,7 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
         </motion.button>
 
         <motion.div
-          className="mt-12 flex items-center justify-center gap-8 text-sm text-[#999999]"
+          className="mt-6 sm:mt-12 flex flex-wrap items-center justify-center gap-2 sm:gap-8 text-xs sm:text-sm text-[#999999]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -160,8 +162,9 @@ export function HeroSection({ onBookingClick }: HeroSectionProps) {
             ІВАНО-ФРАНКІВСЬК
           </motion.span>
         </motion.div>
+        </div>
 
-{/* <BookingModal /> */}
+        {/* <BookingModal /> */}
       </motion.div>
       
     </section>

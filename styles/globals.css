@@ -123,3 +123,45 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Responsive helpers */
+:root {
+  /* container padding for small → large screens */
+  --container-padding: clamp(1rem, 4vw, 3rem);
+}
+
+/* Fluid base font-size to avoid oversized text on small screens */
+html {
+  font-size: clamp(14px, 0.9rem + 0.6vw, 18px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Simple container helper (optional usage) */
+.site-container {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Reduce heavy motion on small screens - opt-in by adding this class to sections */
+@media (max-width: 640px) {
+  .disable-heavy-motion,
+  .disable-heavy-motion * {
+    transition-property: none !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Respect user prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
