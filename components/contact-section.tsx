@@ -35,7 +35,7 @@ function UnderlineInput({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={label}
-        className="w-full bg-transparent text-xl md:text-2xl text-[#EAEAEA] placeholder-[#EAEAEA]/30 pb-4 pt-2 border-b border-[#EAEAEA]/20 focus:outline-none transition-colors duration-300"
+        className="w-full bg-transparent text-xl md:text-2xl text-foreground placeholder:text-muted-foreground/30 pb-4 pt-2 border-b border-border focus:outline-none transition-colors duration-300"
       />
       <motion.div
         className="absolute bottom-0 left-0 h-px bg-[#EAEAEA]"
@@ -76,7 +76,7 @@ function UnderlineTextarea({
         onBlur={() => setIsFocused(false)}
         placeholder={label}
         rows={3}
-        className="w-full bg-transparent text-xl md:text-2xl text-[#EAEAEA] placeholder-[#EAEAEA]/30 pb-4 pt-2 border-b border-[#EAEAEA]/20 focus:outline-none transition-colors duration-300 resize-none"
+        className="w-full bg-transparent text-xl md:text-2xl text-foreground placeholder:text-muted-foreground/30 pb-4 pt-2 border-b border-border focus:outline-none transition-colors duration-300 resize-none"
       />
       <motion.div
         className="absolute bottom-0 left-0 h-px bg-[#EAEAEA]"
@@ -142,14 +142,14 @@ export function ContactSection() {
   }
 
   return (
-    <section className="min-h-screen py-16 px-6 md:px-12 lg:px-24">
+    <section className="min-h-screen py-16 px-6 md:px-12 lg:px-24 bg-background text-foreground transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-8 transition-colors duration-300"
         >
           Контакти
         </motion.p>
@@ -160,7 +160,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl lg:text-7xl font-light text-[#EAEAEA] mb-12 tracking-tight leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-light text-foreground mb-12 tracking-tight leading-tight transition-colors duration-300"
           >
             Розпочніть свій шлях
             <br />
@@ -204,7 +204,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
             viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-[#EAEAEA]/10 flex flex-col md:flex-row justify-between gap-8 text-[#EAEAEA]/40"
+            className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between gap-8 text-muted-foreground"
           >
             <div>
               <p className="text-sm tracking-widest uppercase mb-2">Локація</p>

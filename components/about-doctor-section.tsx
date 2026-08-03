@@ -48,7 +48,7 @@ function MaskRevealLine({
     <div ref={ref} className="overflow-hidden">
       <motion.p
         style={ready ? { y, opacity } : { y: 40, opacity: 0 }}
-        className="text-sm sm:text-base md:text-lg lg:text-xl text-[#EAEAEA]/80 font-light leading-relaxed"
+        className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed transition-colors duration-300"
       >
         {children}
       </motion.p>
@@ -78,7 +78,7 @@ export function AboutDoctorSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-16 px-6 md:px-12 lg:px-24 bg-[#1C1C1C]"
+      className="min-h-screen py-16 px-6 md:px-12 lg:px-24 bg-background text-foreground transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         <motion.p
@@ -86,13 +86,13 @@ export function AboutDoctorSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-8 transition-colors duration-300"
         >
           Про лікаря
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div className="relative aspect-[3/4] overflow-hidden bg-[#2C2C2C]">
+          <div className="relative aspect-[3/4] overflow-hidden bg-card transition-colors duration-300">
             <motion.div
               style={ready ? { y: imageY } : { y: 0 }}
               className="absolute inset-0 scale-110"
@@ -114,7 +114,7 @@ export function AboutDoctorSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-2xl md:text-3xl lg:text-4xl font-light text-[#EAEAEA] mb-12 tracking-tight"
+              className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground mb-12 tracking-tight transition-colors duration-300"
             >
               Юлія Татомир
             </motion.h2>

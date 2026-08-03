@@ -203,14 +203,14 @@ export function InsightsSection() {
   }, [])
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-[#1C1C1C]">
+    <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-background text-foreground transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-8 transition-colors duration-300"
         >
           Інсайти
         </motion.p>
@@ -224,7 +224,7 @@ export function InsightsSection() {
               transition={{ duration: 0.35 }}
               viewport={{ once: true }}
               onClick={() => setSelectedPost(post)}
-              className="group cursor-pointer bg-[#252525] overflow-hidden min-w-0"
+              className="group cursor-pointer bg-card overflow-hidden min-w-0 transition-colors duration-300"
               whileHover={{ y: -6, scale: 1.01, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.98 }}
             >
@@ -246,7 +246,7 @@ export function InsightsSection() {
 
               <div className="p-6 min-w-0">
                 <motion.span 
-                  className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-4"
+                  className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-muted/15 text-muted-foreground mb-4 transition-colors duration-300"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
@@ -259,7 +259,7 @@ export function InsightsSection() {
                   {post.category}
                 </motion.span>
                 <motion.h3 
-                  className="text-base sm:text-xl md:text-2xl font-light text-[#EAEAEA] leading-tight group-hover:text-[#EAEAEA]/80 transition-colors duration-300 break-words"
+                  className="text-base sm:text-xl md:text-2xl font-light text-foreground leading-tight group-hover:text-foreground/80 transition-colors duration-300 break-words"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.15 + 0.4 }}
@@ -320,17 +320,17 @@ export function InsightsSection() {
               </div>
 
                 <div className="p-6 md:p-8 -mt-20 md:-mt-24 relative z-10">
-                <span className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-[#EAEAEA]/10 text-[#EAEAEA]/60 mb-6">
+                <span className="inline-block px-3 py-1 text-xs tracking-[0.15em] uppercase bg-muted/15 text-muted-foreground mb-6 transition-colors duration-300">
                   {selectedPost.category}
                 </span>
 
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#EAEAEA] mb-6 md:mb-8 leading-tight break-words">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground mb-6 md:mb-8 leading-tight break-words transition-colors duration-300">
                   {selectedPost.title}
                 </h2>
 
                 <div className="prose prose-invert max-w-none">
                   {selectedPost.content.split("\n\n").map((paragraph, index) => (
-                    <p key={index} className="text-[#EAEAEA]/70 text-base md:text-lg leading-relaxed mb-6 break-words">
+                    <p key={index} className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 break-words transition-colors duration-300">
                       {paragraph}
                     </p>
                   ))}

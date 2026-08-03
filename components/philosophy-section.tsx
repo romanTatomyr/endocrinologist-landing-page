@@ -46,10 +46,10 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
     <TestTubeIcon className="h-6 w-6 text-[#6ecfaa]" key="tube" />,
   ]
   return (
-    <section id="philosophy" className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-[#1C1C1C]">
+    <section id="philosophy" className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-background text-foreground transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <motion.p
-          className="text-[#EAEAEA]/40 text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-8 transition-colors duration-300"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -66,7 +66,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true }}
-            className="relative overflow-hidden md:col-span-2 md:row-span-2 bg-[#252525] p-8 md:p-12 flex flex-col justify-between min-h-[300px] md:min-h-[400px]"
+            className="relative overflow-hidden md:col-span-2 md:row-span-2 bg-card p-8 md:p-12 flex flex-col justify-between min-h-[300px] md:min-h-[400px] transition-colors duration-300"
           >
             <div aria-hidden className="absolute inset-0">
               <Image src="/w_u_get.webp" alt="" fill className="object-cover object-center transform scale-105 opacity-80" priority />
@@ -75,7 +75,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
 
             <div className="relative z-10">
               <motion.h3
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#EAEAEA] leading-tight break-words"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground leading-tight break-words transition-colors duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -83,7 +83,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
               >
                 Є аналізи —
                 <br />
-                <span className="text-[#EAEAEA]/60">але незрозуміло що з ними робити?</span>
+                <span className="text-foreground/60 transition-colors duration-300">але незрозуміло що з ними робити?</span>
               </motion.h3>
 
               <motion.div
@@ -93,7 +93,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
                 viewport={{ once: true }}
                 className="flex flex-col gap-6"
               >
-                <p className="text-[#EAEAEA]/50 text-base leading-relaxed max-w-full sm:max-w-sm">
+                <p className="text-foreground/70 text-base leading-relaxed max-w-full sm:max-w-sm transition-colors duration-300">
                   Розберемо результати, пояснимо відхилення і скажемо що робити далі — без зайвого.
                 </p>
                 <motion.button
@@ -119,9 +119,9 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true }}
-            className="md:col-span-2 bg-[#252525] p-8 md:p-10 flex flex-col justify-between min-h-[200px]"
+            className="md:col-span-2 bg-card p-8 md:p-10 flex flex-col justify-between min-h-[200px] transition-colors duration-300"
           >
-            <span className="text-[#EAEAEA]/40 text-sm tracking-[0.2em] uppercase">Що отримаєте</span>
+            <span className="text-muted-foreground text-sm tracking-[0.2em] uppercase transition-colors duration-300">Що отримаєте</span>
             <ul className="flex flex-col gap-3 mt-4">
               {
                 [
@@ -133,7 +133,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
                     <div className="flex-shrink-0 mt-1 h-6 w-6 sm:h-7 sm:w-7 flex items-center justify-center text-[#6ecfaa]">
                       {icons[i]}
                     </div>
-                    <span className="text-[#EAEAEA]/70 text-sm md:text-base lg:text-lg leading-relaxed break-words">{item}</span>
+                    <span className="text-foreground/70 text-sm md:text-base lg:text-lg leading-relaxed break-words transition-colors duration-300">{item}</span>
                   </li>
                 ))
               }
@@ -154,7 +154,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true }}
-            className="relative overflow-hidden bg-[#EAEAEA] p-8 md:p-10 flex flex-col justify-between min-h-[200px] text-left"
+            className="relative overflow-hidden bg-secondary text-secondary-foreground p-8 md:p-10 flex flex-col justify-between min-h-[200px] text-left transition-colors duration-300"
           >
               <div aria-hidden className="absolute inset-0">
                 <Image src="/on_offline_light.webp" alt="" fill className="object-cover object-right transform scale-105 opacity-50" />
@@ -162,10 +162,10 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
               </div>
 
             <div className="relative z-10">
-              <span className="text-[#1C1C1C]/40 text-xs sm:text-sm tracking-[0.2em] uppercase">Формат</span>
+              <span className="text-secondary-foreground/70 text-xs sm:text-sm tracking-[0.2em] uppercase transition-colors duration-300">Формат</span>
               <div>
-                <span className="text-3xl sm:text-4xl md:text-5xl font-light text-[#1C1C1C]">Онлайн</span>
-                <p className="text-[#1C1C1C]/60 text-sm sm:text-base mt-2">або офлайн прийом</p>
+                <span className="text-3xl sm:text-4xl md:text-5xl font-light text-secondary-foreground transition-colors duration-300">Онлайн</span>
+                <p className="text-secondary-foreground/70 text-sm sm:text-base mt-2 transition-colors duration-300">або офлайн прийом</p>
               </div>
             </div>
           </motion.button>
@@ -176,7 +176,7 @@ export function PhilosophySection({ onBookingClick }: PhilosophySectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden bg-[#252525] p-8 md:p-10 flex flex-col justify-center min-h-[200px]"
+            className="relative overflow-hidden bg-card p-8 md:p-10 flex flex-col justify-center min-h-[200px] transition-colors duration-300"
           >
             <div aria-hidden className="absolute inset-0">
               <Image src="/complex.webp" alt="" fill className="object-cover object-center transform scale-102 opacity-50" />

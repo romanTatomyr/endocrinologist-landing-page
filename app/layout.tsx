@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Manrope, Geist_Mono } from "next/font/google"
 import EasyWeekWidget from '../components/EasyWeekWidget'
+import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeToggle } from "@/components/theme-toggle"
 import "./globals.css"
 
 const manrope = Manrope({ subsets: ["latin", "cyrillic"], variable: "--font-manrope" })
@@ -227,9 +229,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${manrope.variable} ${geistMono.variable} font-sans antialiased bg-[#1C1C1C] text-[#EAEAEA]`} suppressHydrationWarning>
-        {children}
-        <EasyWeekWidget />
+      <body className={`${manrope.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`} suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ThemeToggle />
+          {children}
+          <EasyWeekWidget />
+        </ThemeProvider>
       </body>
     </html>
   )

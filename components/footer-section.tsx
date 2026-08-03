@@ -9,10 +9,10 @@ interface FooterSectionProps {
 
 export function FooterSection({ onBookingClick }: FooterSectionProps) {
   return (
-    <footer id="contact" className="relative py-16 md:py-24 px-4 md:px-12 bg-[#1C1C1C] border-t border-[#333333]">
+    <footer id="contact" className="relative py-16 md:py-24 px-4 md:px-12 bg-background border-t border-border transition-colors duration-300">
       <div className="max-w-6xl mx-auto text-center">
         <motion.p
-          className="text-[#555555] text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-8 transition-colors duration-300"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -22,7 +22,7 @@ export function FooterSection({ onBookingClick }: FooterSectionProps) {
         </motion.p>
 
         <motion.h2
-          className="text-5xl md:text-7xl lg:text-8xl font-light text-[#EAEAEA] mb-16"
+          className="text-5xl md:text-7xl lg:text-8xl font-light text-foreground mb-16 transition-colors duration-300"
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
@@ -77,12 +77,12 @@ export function FooterSection({ onBookingClick }: FooterSectionProps) {
             whileHover={{ scale: 1.02 }}
           >
             <motion.p 
-              className="text-[#555555] text-sm tracking-[0.2em] uppercase mb-4"
+              className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-4 transition-colors duration-300"
               whileHover={{ color: "#EAEAEA", transition: { duration: 0.2 } }}
             >
               Локація
             </motion.p>
-            <p className="text-[#EAEAEA] text-lg font-light">
+            <p className="text-foreground text-lg font-light transition-colors duration-300">
               вул. Січовий Стрільців 70
               <br />
               клініка МедЛюкс
@@ -99,12 +99,12 @@ export function FooterSection({ onBookingClick }: FooterSectionProps) {
             whileHover={{ scale: 1.02 }}
           >
             <motion.p 
-              className="text-[#555555] text-sm tracking-[0.2em] uppercase mb-4"
+              className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-4 transition-colors duration-300"
               whileHover={{ color: "#EAEAEA", transition: { duration: 0.2 } }}
             >
               Контакти
             </motion.p>
-            <p className="text-[#EAEAEA] text-lg font-light">
+            <p className="text-foreground text-lg font-light transition-colors duration-300">
               <motion.a 
                 href="mailto:yuliia.tatomyr@gmail.com" 
                 className="hover:text-[#999999] transition-colors duration-300"
@@ -133,12 +133,12 @@ export function FooterSection({ onBookingClick }: FooterSectionProps) {
             whileHover={{ scale: 1.02 }}
           >
             <motion.p 
-              className="text-[#555555] text-sm tracking-[0.2em] uppercase mb-4"
+              className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-4 transition-colors duration-300"
               whileHover={{ color: "#EAEAEA", transition: { duration: 0.2 } }}
             >
               Години роботи
             </motion.p>
-            <p className="text-[#EAEAEA] text-lg font-light">
+            <p className="text-foreground text-lg font-light transition-colors duration-300">
               Вівторок, Субота
               <br />
               9:00 — 13:00

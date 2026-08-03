@@ -17,11 +17,20 @@ export default function Home() {
   const lenisRef = useRef<any>(null)
 
   useEffect(() => {
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      (window.matchMedia?.("(pointer: coarse)").matches || /Mobi|Android|iP(hone|od|ad)/.test(navigator.userAgent))
+
+    if (isTouchDevice) {
+      return
+    }
+
     lenisRef.current = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
+      smoothTouch: false,
     })
 
     function raf(time: number) {

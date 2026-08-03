@@ -57,11 +57,11 @@ export function ServicesSection() {
     <section
       id="services"
       ref={containerRef}
-      className="relative py-16 md:py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="relative py-16 md:py-24 px-6 md:px-12 lg:px-24 overflow-hidden bg-background text-foreground transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         <motion.p
-          className="text-[#EAEAEA]/40 text-xs md:text-sm tracking-[0.3em] uppercase mb-8"
+          className="text-muted-foreground text-xs md:text-sm tracking-[0.3em] uppercase mb-8 transition-colors duration-300"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -73,7 +73,7 @@ export function ServicesSection() {
         {services.map((service, index) => (
           <motion.div
             key={service.title}
-            className="border-t border-[#333333] py-6 md:py-8 cursor-pointer group"
+            className="border-t border-border dark:border-[#333333] py-6 md:py-8 cursor-pointer group transition-colors duration-300"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => {
@@ -98,7 +98,7 @@ export function ServicesSection() {
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-8">
                 <motion.span 
-                  className="text-[#555555] text-sm font-light"
+                  className="text-muted text-sm font-light transition-colors duration-300"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ 
@@ -112,7 +112,7 @@ export function ServicesSection() {
                   0{index + 1}
                 </motion.span>
                 <motion.h3 
-                  className="text-3xl md:text-5xl lg:text-6xl font-light text-[#EAEAEA] group-hover:text-[#999999] transition-colors duration-500"
+                  className="text-3xl md:text-5xl lg:text-6xl font-light text-foreground group-hover:text-muted-foreground dark:group-hover:text-[#999999] transition-colors duration-500"
                   initial={{ x: -30, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ 
@@ -126,7 +126,7 @@ export function ServicesSection() {
                 </motion.h3>
               </div>
               <motion.div 
-                className="hidden md:block text-[#666666] text-xs md:text-sm"
+                className="hidden md:block text-muted-foreground text-xs md:text-sm transition-colors duration-300"
                 initial={{ x: 0, opacity: 0 }}
                 whileHover={{ x: 10 }}
                 whileInView={{ opacity: 1 }}
