@@ -23,31 +23,15 @@ function MaskRevealLine({
 }: {
   children: string
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [ready, setReady] = useState(false)
-
-  useLayoutEffect(() => {
-    if (ref.current) setReady(true)
-  }, [])
-
-  const { scrollYProgress } = useScroll(
-    ready
-      ? {
-          target: ref,
-          offset: ["start 0.9", "start 0.5"],
-        }
-      : {}
-  )
-
-  const y = useTransform(scrollYProgress, [0, 1], [40, 0])
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
-
   if (!children) return <div className="h-6" />
 
   return (
-    <div ref={ref} className="overflow-hidden">
+    <div className="overflow-hidden">
       <motion.p
-        style={ready ? { y, opacity } : { y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "-10% 0px" }}
+        transition={{ duration: 0.6, ease: [0.215, 0.610, 0.355, 1.000] }}
         className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed transition-colors duration-300"
       >
         {children}
