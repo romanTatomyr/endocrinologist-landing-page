@@ -291,7 +291,7 @@ export function InsightsSection() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-[#1C1C1C] z-[100] overflow-y-scroll touch-pan-y pointer-events-auto"
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[600px] lg:w-[700px] h-[100dvh] bg-background z-[100] overflow-y-scroll touch-pan-y pointer-events-auto transition-colors duration-300"
               style={{ 
                 overscrollBehaviorY: "contain",
                 WebkitOverflowScrolling: "touch" 
@@ -302,7 +302,7 @@ export function InsightsSection() {
             >
               <button
                 onClick={() => setSelectedPost(null)}
-                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-[#EAEAEA]/10 flex items-center justify-center text-[#EAEAEA] hover:bg-[#EAEAEA]/20 transition-colors cursor-pointer z-[110]"
+                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center text-foreground hover:bg-foreground/20 transition-colors cursor-pointer z-[110]"
               >
                 <X size={24} />
               </button>
@@ -316,7 +316,7 @@ export function InsightsSection() {
                   priority
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] via-[#1C1C1C]/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent transition-colors duration-300" />
               </div>
 
                 <div className="p-6 md:p-8 -mt-20 md:-mt-24 relative z-10">
@@ -328,7 +328,7 @@ export function InsightsSection() {
                   {selectedPost.title}
                 </h2>
 
-                <div className="prose prose-invert max-w-none">
+                <div className="prose dark:prose-invert max-w-none">
                   {selectedPost.content.split("\n\n").map((paragraph, index) => (
                     <p key={index} className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 break-words transition-colors duration-300">
                       {paragraph}
